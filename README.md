@@ -9,85 +9,85 @@
 
 ---
 
-## What is Liquidity Coupling? (The TL;DR)
-In the near future, millions of AI agents will hire each other for tasks (e.g., "Agent A hires B, who hires C"). 
-- **The Risk:** If Agent C breaks (API failure, hallucination, out of credits), it defaults on its payment to Agent D. An "Insolvency Cascade" begins, collapsing the machine economy in milliseconds. Existing payment protocols (like AP2) build the roads, but provide no brakes.
-- **The Solution:** **Liquidity Coupling.** When Agent A hires Agent B, A locks a small "safety stake" (e.g., 20% fractional reserve) in a cryptographic escrow. If B fails, that stake automatically flows down the chain to keep B's workers (Agent C) solvent. 
+## Abstract
 
-### Why it Matters
-We mathematically and empirically prove that by locking just a **20% liquidity buffer**, we can reduce the depth of an AI economic collapse by **64%**. Furthermore, we establish a Perfect Bayesian Equilibrium (PBE) showing that "good" agents will voluntarily use Liquidity Coupling to prove their reliability, naturally boxing out scam or broken agents.
+As the machine economy scales toward asynchronous, cross-platform workflows, autonomous agents will increasingly contract sub-agents to fulfill complex queries. However, independent agents lack inherent creditworthiness, creating a systemic risk: a single node failure (e.g., hallucination, API timeout) can trigger an insolvency cascade, halting upstream payments and collapsing the economic graph. 
 
-This is the "Central Bank thermodynamics" required to run agentic economies on real-time internet rails (such as India's UPI).
+This repository presents the reference implementation for **Liquidity Coupling**, a cryptographic escrow mechanism designed to halt sub-graph insolvency cascades. By requiring upstream agents to lock a fractional stability stake ($\alpha$), the protocol ensures downstream creditors are automatically reallocated funds if the intermediate agent defaults. 
+
+Our findings demonstrate that a 20% fractional reserve requirement ($\alpha = 0.20$) reduces the average depth of an economic collapse by 64% in a dense agent network. Furthermore, under a Perfect Bayesian Equilibrium (PBE) framework, Liquidity Coupling satisfies the Cho-Kreps Intuitive Criterion, establishing a separating equilibrium where highly reliable agents voluntarily adopt the protocol to signal their solvency.
 
 ---
 
 ## Repository Structure
 
-Included in this repository is the complete Proof-of-Concept for the paper's claims.
+This repository contains the official proof-of-concept components for the associated research paper.
 
 ```text
 liquidity-coupling/
 ├── paper.pdf                    # The official pre-print research paper
-├── liquidity_coupling.py        # Core Mechanism: Python implementation of the Escrow
+├── liquidity_coupling.py        # Core Mechanism: Python implementation of the Symbiotic Escrow
 ├── simulation/                  
-│   ├── run_experiment.py        # Reproduces Table 2 (10,000-node simulation)
-│   └── seg_simulator.py         # The Symbiotic Economy Graph (SEG) engine
+│   ├── run_experiment.py        # Execution script for Table 2 (10,000-node simulation)
+│   ├── seg_simulator.py         # The Symbiotic Economy Graph (SEG) simulator engine
+│   └── requirements.txt         # Dependencies for the simulation
 ├── experiments/                 
-│   └── tier3_experiment.py      # Reproduces Table 3 (Real-world LLM pipelining)
-└── results/                     # Raw JSON and CSV data from empirical runs
+│   └── tier3_experiment.py      # Execution script for Table 3 (Empirical LLM pipelining)
+└── results/                     # Raw JSON and CSV empirical data outputs
 ```
 
 ---
 
-## 1. The Core Mechanism
+## 1. Core Mechanism Integration
 
-If you are an agent framework developer (Swarms.ai, LangChain, CrewAI), you can integrate the escrow immediately.
+The fundamental escrow mechanism is available as a standalone Python module for integration into agent frameworks (e.g., Swarms.ai, LangChain).
 
 ```python
 from liquidity_coupling import LiquidityCoupledEscrow
 
-# Initialize the clearinghouse
+# Initialize the clearinghouse with defined parameters
 escrow = LiquidityCoupledEscrow(alpha=0.20, chi=0.30)
 
-# Agent A stakes $10.00 to hire Agent B
+# Agent A commits a $10.00 base stake to acquire Agent B's services
 escrow.stake_funds("Agent_A", "Agent_B", base_amount=10.00)
 
-# If B fails to pay C downstream...
+# In the event of Agent B's failure to fulfill downstream obligations
 escrow.slash_and_reallocate(
     defaulting_agent="Agent_B", 
     downstream_creditor="Agent_C"
 )
 ```
 
-## 2. Reproducing the Simulation (10,000 Nodes)
+## 2. Discrete-Event Simulation (10,000 Nodes)
 
-To verify the mathematical proofs from Section 4, run the discrete-event simulator. It simulates 10,000 agents passing tasks under varying stability threshold ($\alpha$) conditions.
+To verify the theoretical proofs regarding branching process theory and cascade halts outlined in Section 4 of the paper, researchers can execute the discrete-event simulator. The simulator evaluates 10,000 agents passing tasks under varying stability thresholds.
 
 ```bash
 pip install -r simulation/requirements.txt
 python simulation/run_experiment.py
 ```
-*Expected Output: You will see the Average Cascade Depth drop from ~6.2 hops ($\alpha=0$) to < 1.4 hops ($\alpha=0.30$).*
+*Expected Output: Average Cascade Depth reduces significantly from approximately 6.2 hops ($\alpha=0$) to under 1.4 hops ($\alpha=0.30$).*
 
-## 3. Real-World LLM Experiment (The Generative Test)
+## 3. Empirical LLM Validation
 
-In Section 8, we move from math to reality by chaining actual LLMs (`qwen3-vl:8b` and `kimi-k2.5:cloud`). We intentionally inject failure modes (malformed JSON, hallucinations) to see if Liquidity Coupling catches the fallout in real-time.
+Section 8 of the paper validates the mathematical model against real-world Generative AI constraints by chaining actual Large Language Models (`qwen3-vl:8b` and `kimi-k2.5:cloud`). The evaluation script intentionally injects standard failure modes (e.g., malformed JSON structures, API timeouts) to observe the mechanism's real-time reallocation efficiency.
 
-**Prerequisites:** Requires a local `ollama` instance running the models.
+**Prerequisites:** Requires a local `ollama` instance and the target models installed.
 ```bash
 python experiments/tier3_experiment.py
 ```
 
 ---
 
-## The Vision: Emerging Markets & UPI
-While much of the Western narrative focuses on crypto-native agent payments, we designed this protocol to sit atop fiat rails. Specifically, **UPI (Unified Payments Interface)** in India processes 15 billion transactions a month, but lacks native logic for continuous, sub-second machine-to-machine credit extension. Liquidity Coupling is designed to act as the synthetic credit layer for India's emerging AI workforce.
+## Future Directions: Application to Fiat Infrastructure
+While contemporary literature frequently restricts agentic economies to cryptographically native ledgers, this research establishes a foundation for fiat-bridged protocols. Specifically, high-throughput systems such as India's Unified Payments Interface (UPI) process billions of rapid transactions but currently lack native logic for sub-second, multi-hop machine credit extension. Liquidity Coupling is proposed as a distinct, synthetic layer to facilitate large-scale agent economies over existing emerging-market rails.
 
 ## Citation
 
-If you use this work or the simulation engine in your own research, please cite:
+Please refer to the following format when referencing this mechanism or the associated data sets in academic literature:
+
 ```bibtex
-@article{showdhury2026liquidity,
+@article{chowdhury2026liquidity,
   title={Liquidity Coupling in Autonomous Agent Networks: 
          A Game-Theoretic Foundation for Symbiotic Economic Settlement},
   author={Chowdhury, Sayan},
@@ -97,4 +97,4 @@ If you use this work or the simulation engine in your own research, please cite:
 ```
 
 ## License
-MIT License. See the paper for full theoretical proofs and limitations.
+MIT License. Please consult the embedded research paper (`paper.pdf`) for comprehensive game-theoretic proofs, topological limitations, and boundary conditions.
