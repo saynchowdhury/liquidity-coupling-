@@ -1,0 +1,26 @@
+{
+  "run_id": "20260325_235918",
+  "alpha": 0.2,
+  "n_chains": 5,
+  "results": [
+    {
+      "model": "qwen3-vl:8b",
+      "task": "sentiment",
+      "n_chains": 5,
+      "tcr_pct": 0.0,
+      "mean_depth_no_lc": 0,
+      "std_depth_no_lc": 0.0,
+      "mean_depth_with_lc": 0,
+      "std_depth_with_lc": 0.0,
+      "cascade_reduction_pct": 0,
+      "failure_breakdown": {
+        "json_malformed": 5,
+        "wrong_key": 0,
+        "wrong_value": 0,
+        "hallucination": 0,
+        "timeout": 0,
+        "success": 0
+      }
+    }
+  ]
+}

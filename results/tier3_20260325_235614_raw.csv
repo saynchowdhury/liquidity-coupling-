@@ -1,0 +1,6 @@
+model,task,chain,fail_hop,failure_mode,depth_no_lc,depth_with_lc
+kimi-k2.5:cloud,sentiment,1,0,json_malformed,0,0
+kimi-k2.5:cloud,sentiment,2,0,json_malformed,0,0
+kimi-k2.5:cloud,sentiment,3,0,json_malformed,0,0
+kimi-k2.5:cloud,sentiment,4,0,timeout,0,0
+kimi-k2.5:cloud,sentiment,5,0,json_malformed,0,0

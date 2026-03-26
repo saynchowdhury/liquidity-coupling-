@@ -1,0 +1,6 @@
+model,task,chain,fail_hop,failure_mode,depth_no_lc,depth_with_lc
+qwen3-vl:8b,sentiment,1,0,json_malformed,0,0
+qwen3-vl:8b,sentiment,2,0,json_malformed,0,0
+qwen3-vl:8b,sentiment,3,0,json_malformed,0,0
+qwen3-vl:8b,sentiment,4,0,json_malformed,0,0
+qwen3-vl:8b,sentiment,5,0,json_malformed,0,0
