@@ -85,19 +85,19 @@ We introduce \textbf{Liquidity Coupling}, a mechanism in which agents stake a fr
   \node[below=0.6cm of A3, font=\footnotesize\itshape] {(a) Without Liquidity Coupling: cascade depth $\approx$ 4.8 hops};
 
   % With LC
-  \node[draw, circle, fill=green!20, minimum size=0.8cm, below=2.5cm of A1] (B1) {$A_1$};
+  \node[draw, circle, fill=green!20, minimum size=0.8cm, below=3.0cm of A1] (B1) {$A_1$};
   \node[draw, circle, fill=green!20, minimum size=0.8cm, right=of B1] (B2) {$A_2$};
   \node[draw, circle, fill=orange!30, minimum size=0.8cm, right=of B2] (B3) {$A_3$};
   \node[draw, circle, fill=green!20, minimum size=0.8cm, right=of B3] (B4) {$A_4$};
   \node[draw, circle, fill=green!20, minimum size=0.8cm, right=of B4] (B5) {$A_5$};
   \draw[->, thick] (B1) -- (B2) node[midway, above] {\$p};
   \draw[->, thick, red] (B2) -- (B3) node[midway, above] {\color{red}fail};
-  \draw[->, thick, blue] (B2) to[bend left=30] node[midway, above, font=\scriptsize, blue] {$\alpha p$ escrow} (B4);
+  \draw[->, thick, blue] (B2) to[bend left=45] node[midway, above=0.05cm, font=\small\bfseries, blue] {$\alpha p$ escrow} (B4);
   \draw[->, thick, green!50!black] (B4) -- (B5) node[midway, above] {\$p};
-  \node[above=0.3cm of B3, blue] {\textbf{Cascade halts}};
-  \node[below=0.6cm of B3, font=\footnotesize\itshape] {(b) With Liquidity Coupling ($\alpha=0.20$): cascade depth $\approx$ 1.7 hops};
+  \node[below=0.2cm of B3, blue] {\textbf{Cascade halts}};
+  \node[below=0.8cm of B3, font=\footnotesize\itshape] {(b) With Liquidity Coupling ($\alpha=0.20$): cascade depth $\approx$ 1.7 hops};
 \end{tikzpicture}
-\caption{The Liquidity Coupling mechanism. (a)~Without coupling, a single agent failure cascades through all downstream nodes. (b)~With coupling, the upstream agent's staked escrow ($\alpha p$) is automatically reallocated to downstream creditors, halting the cascade within 1--2 hops.}
+\caption{The Liquidity Coupling mechanism. (a)~Without coupling, a single agent failure cascades through all downstream nodes. (b)~With coupling, the upstream agent's staked escrow ($\alpha p$) is automatically reallocated to downstream creditors across a separate path, halting the cascade within 1--2 hops.}
 \label{fig:cascade}
 \end{figure}
 
