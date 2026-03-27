@@ -9,6 +9,24 @@
 
 ---
 
+### Executive Summary: What problem does this solve?
+
+**The Problem:**
+In the near future, AI agents will autonomously hire other AI agents in deep pipelines. For example: Agent A (Orchestrator) hires Agent B (Video Editor), who hires Agent C (Audio Transcriber), who hires Agent D (Summarizer). 
+If Agent C suddenly runs out of API credits or goes bankrupt mid-task, it cannot pay Agent D. Agent D halts work. Agent B never gets the audio, and Agent A's entire video project fails.
+
+In human economies, when a contractor goes bankrupt, we have courts, insurance, and bank escrows to handle it. In an *Agentic Economy* executing at millisecond speeds, these human backstops do not exist. If one agent fails, millions of micro-transactions collapse like dominoes in a fraction of a second.
+
+**Why existing tech fails:**
+Current agent-payment protocols (like Coinbase's x402 or Google's AP2) fail because they just facilitate the transfer of money; they do nothing to guarantee that the agent you hired is actually solvent enough to finish the job.
+
+**The Solution (Liquidity Coupling):**
+This repository introduces a mechanism where, before Agent B hires Agent C, Agent C is forced to lock a partial "stake" (collateral) into a smart contract verifying its solvency. 
+If Agent C crashes or goes broke, the math ensures that Agent D is immediately paid out of Agent C's locked collateral. The pipeline doesn't break, and the task finishes.
+By mathematically modeling this as a "Galton-Watson branching process," we prove that if agents are forced to couple their liquidity this way, the cascade of failures completely halts, ensuring the stability of the entire Agentic Economy.
+
+---
+
 ## Abstract
 
 As the machine economy scales toward asynchronous, cross-platform workflows, autonomous agents will increasingly contract sub-agents to fulfill complex queries. However, independent agents lack inherent creditworthiness, creating a systemic risk: a single node failure (e.g., hallucination, API timeout) can trigger an insolvency cascade, halting upstream payments and collapsing the economic graph. 
