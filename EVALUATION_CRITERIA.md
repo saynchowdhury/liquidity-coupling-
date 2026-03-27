@@ -1,6 +1,6 @@
 # Reproducibility & Evaluation Roadmap
 
-### **To Amal, Jaiya, and Independent Reviewers:**
+### **To Independent Reviewers and Technical Evaluators:**
 This document outlines the technical verification steps for the paper *Liquidity Coupling in Autonomous Agent Networks*. It is designed to facilitate 1:1 reproduction of the theoretical and empirical results by the ML/AI evaluation committee.
 
 ---
