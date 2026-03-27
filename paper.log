@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.25)  27 MAR 2026 23:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.25)  28 MAR 2026 00:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -699,8 +699,7 @@ File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 tex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count341
-)
-No file paper.aux.
+) (paper.aux)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
@@ -721,6 +720,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -782,6 +782,7 @@ fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring OFF on input line 23.
+ (paper.out) (paper.out)
 \@outlinefile=\write4
 \openout4 = `paper.out'.
 
@@ -844,9 +845,6 @@ LaTeX Warning: Citation `brady1988' on page 1 undefined on input line 40.
 [1
 
 {C:/Users/sayan/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-
-LaTeX Warning: Reference `tab:aps_triad' on page 2 undefined on input line 51.
-
 
 LaTeX Warning: Citation `x402_2025' on page 2 undefined on input line 59.
 
@@ -912,10 +910,6 @@ LaTeX Warning: Citation `cho1987' on page 6 undefined on input line 215.
 
 [6] [7]
 
-LaTeX Warning: Reference `tab:benchmarks' on page 8 undefined on input line 280
-.
-
-
 LaTeX Warning: Citation `swarms_24' on page 8 undefined on input line 291.
 
 
@@ -943,10 +937,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: Citation `boneh2018vdf' on page 9 undefined on input line 314.
 
-
-LaTeX Warning: Citation `npci_upi_2025' on page 9 undefined on input line 318.
-
 [9]
+
+LaTeX Warning: Citation `npci_upi_2025' on page 10 undefined on input line 318.
+
+
 No file paper.bbl.
 [10] (paper.aux)
  ***********
@@ -960,23 +955,17 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package rerunfilecheck Warning: File `paper.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `paper.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  AA5AC1DF11248139D67AE651AC538E6E;4777.
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: AA5AC1DF11248139D67AE651AC538E6E;4777.
  ) 
 Here is how much of TeX's memory you used:
- 24136 strings out of 467871
- 449644 string characters out of 5418376
- 883523 words of memory out of 5000000
- 52359 multiletter control sequences out of 15000+600000
- 650638 words of font info for 211 fonts, out of 8000000 for 9000
+ 24173 strings out of 467871
+ 450262 string characters out of 5418376
+ 884597 words of memory out of 5000000
+ 52384 multiletter control sequences out of 15000+600000
+ 650800 words of font info for 214 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,14n,104p,1153b,891s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,14n,104p,1153b,895s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\sayan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1095.pk> <C:\Users\sayan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\tcrm1000.pk><C:/Users/sayan/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -1005,9 +994,9 @@ ayan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:
 1/public/amsfonts/cm/cmtt10.pfb><C:/Users/sayan/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/sayan/AppData/Local/Pro
 grams/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on paper.pdf (10 pages, 355782 bytes).
+Output written on paper.pdf (10 pages, 364004 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
+ 303 PDF objects out of 1000 (max. 8388607)
  54 named destinations out of 1000 (max. 500000)
- 52237 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 52421 words of extra memory for PDF output out of 61914 (max. 10000000)
 
