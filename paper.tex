@@ -119,9 +119,9 @@ We introduce \textbf{Liquidity Coupling}, a mechanism in which agents stake a fr
 This paper makes the following contributions:
 \begin{enumerate}
     \item \textbf{Liquidity Coupling} (Section 4): a formal mechanism design primitive that transforms bilateral agent payments into mutually incentivized graphs.
-    \item \textbf{Cascade Branching Process Bound} (Theorem 4.1): a rigorous application of Galton-Watson branching processes proving exactly when insolvency cascades halt almost surely, depending on network topology $\lambda$ and coupling parameter $\alpha$.
-    \item \textbf{Perfect Bayesian Equilibrium} (Section 6, Theorem 6.1): a game-theoretic proof demonstrating that Liquidity Coupling acts as a credible signal separating solvent agents from insolvent ones under asymmetric information.
-    \item \textbf{Sybil Cartel Attack Mitigation} (Section 8.2): an explicit structural boundary ensuring maximum extractable value (MEV) attacks are unprofitable.
+    \item \textbf{Cascade Branching Process Bound} (Theorem~\ref{thm:halting}): a rigorous application of Galton-Watson branching processes proving exactly when insolvency cascades halt almost surely, depending on network topology $\lambda$ and coupling parameter $\alpha$.
+    \item \textbf{Perfect Bayesian Equilibrium} (Section 6, Theorem~\ref{thm:signaling}): a game-theoretic proof demonstrating that Liquidity Coupling acts as a credible signal separating solvent agents from insolvent ones under asymmetric information.
+    \item \textbf{Sybil Cartel Attack Mitigation} (Section 8.2, Theorem~\ref{thm:collusion}): an explicit structural boundary ensuring maximum extractable value (MEV) attacks are unprofitable.
 \end{enumerate}
 
 \section{Related Work}
@@ -161,6 +161,7 @@ When agent $A_i$ extends a credit limit $w_{ij}$ to agent $A_j$, $A_i$ simultane
 To rigorously bound cascade depth, we model insolvency propagation as a Galton-Watson branching process.
 
 \begin{theorem}[Cascade Depth Halting Boundary]
+\label{thm:halting}
 Let the number of unfulfilled downstream capability edges originating from an insolvent node $A_j$ follow a distribution with mean $\lambda > 1$. Let payment sizes be homogeneous. In a Liquidity-Coupled network with parameter $\alpha > 0$, the insolvency cascade halts almost surely if:
 $$ \alpha > 1 - \frac{1}{\lambda} $$
 And when this subcritical condition holds, the expected total size of the cascade (total nodes affected) is bounded by:
@@ -178,9 +179,10 @@ The theory of branching processes dictates that a process halts almost surely if
 In our empirical evaluation (Section 8), we observed that localized LLM task pipelines naturally adopted a linear but slightly staggered obligation structure, anchoring the average downstream dependency rate at $\lambda \approx 1.15$. By setting $\alpha=0.20$, the subcritical bounding strictly holds ($0.20 > 1 - 1/1.15 \approx 0.13$), yielding a theoretical expected cascade depth converging safely to $< 2.0$, perfectly matching our 1.7 node observation.
 
 \begin{corollary}[Scale-Free Topology Boundary]
+\label{cor:scale_free}
 In agent networks with power-law degree distribution with exponent $\gamma \leq 3$, the effective mean-field reproduction number is $R_{eff} = \lambda_2/\lambda_1$ where $\lambda_k = \mathbb{E}[\deg^k]$ \cite{pastor2001epidemic}. For $\gamma \leq 3$, $\lambda_2 \to \infty$ as network size grows, meaning no finite coupling parameter $\alpha$ can guarantee almost-sure cascade halting via the scalar threshold. In these topologies, \textbf{hub-priority coupling} is necessary: agents must assign elevated coupling parameters
 $$\alpha_{hub} > 1 - \frac{\lambda_1}{\lambda_2}$$
-to high-degree orchestrator nodes, where this bound is the hub-specific subcritical threshold derived from the heterogeneous mean-field approximation. This directly motivates the Delegated Staking mechanism described in Section 5.2, where capital-rich agents preferentially stake on high-degree hubs. Theorem 4.1 applies without modification to networks with $\gamma > 3$ (rapidly decaying degree distributions), which includes most deployment-constrained agentic pipelines.
+to high-degree orchestrator nodes, where this bound is the hub-specific subcritical threshold derived from the heterogeneous mean-field approximation. This directly motivates the Delegated Staking mechanism described in Section 5.2, where capital-rich agents preferentially stake on high-degree hubs. Theorem~\ref{thm:halting} applies without modification to networks with $\gamma > 3$ (rapidly decaying degree distributions), which includes most deployment-constrained agentic pipelines.
 \end{corollary}
 
 \section{Supporting Constructions}
@@ -212,6 +214,7 @@ Our model must account for \textit{asymmetric information}: an agent's true capa
 Insolvent agents (type $I$) face a severe shadow cost of capital or absolute incapacity to lock $\alpha w$. Solvent agents (type $S$) experience only standard opportunity cost $c_S$ for locking funds.
 
 \begin{theorem}[Liquidity Coupling as Credible Signal]
+\label{thm:signaling}
 Let $\chi > 0$ be the discounted future value penalty of a reputation slash $\Delta\rho$ incurred upon default. If the opportunity cost parameters satisfy $c_S < \frac{p}{\alpha w} < c_I + \frac{\chi}{\alpha w}$, there exists a unique separating Perfect Bayesian Equilibrium where:
 1. Type $S$ plays ``Offer LC'', Type $I$ plays ``No LC''.
 2. Creditor $A_i$'s belief updating yields $\mu_1(\theta=S | Offer LC) = 1$ and $\mu_1(\theta=S | No LC) = 0$.
@@ -258,7 +261,7 @@ The optimal Liquidity Coupling parameter lies in $[0.15, 0.35]$. Peak Task Compl
 
 This experiment tests whether real LLM agents produce failure patterns consistent with the branching process distribution established in Theorem 4.1. The discrete-event simulation in Section 7 demonstrates cascade behavior at scale ($N=10{,}000$ nodes) by sampling from a calibrated failure distribution. A natural question is whether real generative failure modes---hallucination, JSON non-compliance, context collapse---produce the same cascade signature. We executed continuous, real-world LLM pipelines using two locally-deployed models (\texttt{qwen3-vl:8b} and \texttt{kimi-k2.5:cloud}) via Ollama on a consumer workstation (Intel i7, 32GB RAM, no GPU acceleration) across three task types: sentiment classification, single-sentence summarization, and fixed-label categorization. Each pipeline is a sequential 5-hop chain where inference failures---JSON malformation, wrong key, wrong value, hallucination, or timeout---constitute task failures that trigger the cascade protocol.
 
-The choice of 10-node pipelines for the primary trace (and 5-hop chains for the multi-model experiment) is deliberate and theoretically grounded. Theorem 4.1 predicts that subcritical cascade behavior ($\alpha > 1 - 1/\lambda$) should manifest as halting within $\mathbb{E}[|C|] = 1/(1 - \lambda(1-\alpha)) \approx 2.0$ hops at $\alpha=0.20$, $\lambda=1.15$. At this expected cascade size, a 10-node pipeline is not a constraint but an adequate observation window: any cascade should terminate well before reaching the 10th hop. Scaling to 50-100 LLM nodes would increase token cost by 5--10$\times$ while providing proportionally little additional information about the halting event distribution, since the model predicts halting at $< 2.0$ hops. The 10-node LLM chain is therefore the appropriate experiment for validating the theoretical cascade depth, not the theoretical network coverage.
+The choice of 10-node pipelines for the primary trace (and 5-hop chains for the multi-model experiment) is deliberate and theoretically grounded. Theorem~\ref{thm:halting} predicts that subcritical cascade behavior ($\alpha > 1 - 1/\lambda$) should manifest as halting within $\mathbb{E}[|C|] = 1/(1 - \lambda(1-\alpha)) \approx 2.0$ hops at $\alpha=0.20$, $\lambda=1.15$. At this expected cascade size, a 10-node pipeline is not a constraint but an adequate observation window: any cascade should terminate well before reaching the 10th hop. Scaling to 50-100 LLM nodes would increase token cost by 5--10$\times$ while providing proportionally little additional information about the halting event distribution, since the model predicts halting at $< 2.0$ hops. The 10-node LLM chain is therefore the appropriate experiment for validating the theoretical cascade depth, not the theoretical network coverage.
 
 Furthermore, the two experiments serve complementary roles. The 10,000-node simulation tests the macro stability property (whether the threshold produces a subcritical regime across a large heterogeneous graph). The 10-node LLM chain tests whether real generative failure modes---hallucination, context collapse, JSON non-compliance---produce the same cascade signature as the theoretical model. These are orthogonal validation questions. The agreement between the theoretically predicted cascade depth ($< 2.0$ hops) and the empirically observed cascade depth (1.7 hops) is the key result.
 
@@ -288,7 +291,7 @@ To provide explicit verification of our empirical pipeline, we present a trace l
 [Bilateral] Default cascade hits A1 and A0 upstream. 
 [Liquidity Coupling] Escrow E_12 absorbs shortfall. Cascade halts at A1.
 \end{verbatim}
-This physical instantiation proves that generative failure modes---unique to AI actors---trigger the precise financial cascades predicted by our branching process (Theorem 4.1). Note that these 10-node localized trace metrics vary quantitatively from the 10,000-node discrete-event simulations in Section 7, explicitly calibrating the theoretical bounds against raw generative hallucination variance rather than synthetic probabilities.
+This physical instantiation proves that generative failure modes---unique to AI actors---trigger the precise financial cascades predicted by our branching process (Theorem~\ref{thm:halting}). Note that these 10-node localized trace metrics vary quantitatively from the 10,000-node discrete-event simulations in Section 7, explicitly calibrating the theoretical bounds against raw generative hallucination variance rather than synthetic probabilities.
 
 \subsection{Comparative Benchmarking of Agent Frameworks}
 We evaluate Liquidity Coupling against leading production-grade agent frameworks and protocols. Table \ref{tab:benchmarks} demonstrates that while existing solutions solve orchestration and payment rails, none systematically halt insolvency cascades.
@@ -311,13 +314,16 @@ Conway (Web4.ai) \cite{web4_25} & $\times$ & \checkmark (Wallets) & $\times$ & $
 \label{tab:benchmarks}
 \end{table}
 
-\subsection{Sybil Cartel Attack Mitigation}
+\section{Sybil Cartel Attack Mitigation}
+\label{sec:sybil}
+
 Adversarial nodes may collude in a dense subgraph $C$ of size $k$ to execute massive fictitious trades, bloating mutual escrow $E_C$. The SSO classifies them as robust (``Green''). They then accept legitimate tasks from the main network, collect down-payments, and perform a synchronized systemic default to capture Maximum Extractable Value (MEV).
 
 \begin{theorem}[Collusion Resistance]
+\label{thm:collusion}
 Let $\psi(C)$ be the normalized graph conductance of the cartel subgraph, formally defined as:
 $$\psi(C) = \frac{|\{e_{ij} : A_i \in C, A_j \notin C\}|}{\min(\text{vol}(C),\, \text{vol}(\bar{C}))}$$
-where $\text{vol}(C) = \sum_{A_i \in C} \deg(A_i)$ and the numerator counts credit edges crossing the cartel boundary. Because the SSO penalizes insular subgraphs by requiring that the effective trust weight of any node in $C$ be multiplied by $\psi(C)$, cartels that route volume solely among themselves achieve low conductance—reducing their trust score rather than raising it. Consequently, the cost $K$ to sustained collateralization strictly exceeds the MEV. The cartel must lock liquid capital $k \times \alpha \times p$. The attack is unprofitable when:
+where $\text{vol}(C) = \sum_{A_i \in C} \deg(A_i)$ and the numerator counts credit edges crossing the cartel boundary. Because the SSO penalizes insular subgraphs by requiring that the effective trust weight of any node in $C$ be multiplied by $\psi(C)$, cartels that route volume solely among themselves achieve low conductance—reducing their trust score rather than raising it. Let $K = k \times \alpha \times p$ denote the total capital required for sustained collateralization. Consequently, the cost $K$ strictly exceeds the MEV. The cartel must lock liquid capital $k \times \alpha \times p$. The attack is unprofitable when:
 $$ \alpha > \frac{MEV_{total} \cdot \psi(C)}{k \cdot L_{cartel}} $$
 Since $\psi(C) \to 0$ for a maximally insular cartel, the bound is tightest precisely when the cartel most resembles a closed ring—the exact structure incentivized by MEV extraction.
 \end{theorem}
@@ -326,8 +332,8 @@ Since $\psi(C) \to 0$ for a maximally insular cartel, the bound is tightest prec
 \textbf{Limitations}:
 \textbf{L1 (Token Cost):} Dynamic execution of massive LLM sub-agent graphs incurs extreme per-token cost, creating practical deployment friction at scale.
 \textbf{L2 (Time Oracle):} The required settlement Time Oracle introduces centralization risks solvable by Verifiable Delay Functions \cite{boneh2018vdf}.
-\textbf{L3 (Zero Buffer Assumption):} Theorem 4.1 assumes agents operate with zero liquidity buffer --- payment receipts must immediately fund downstream obligations. To quantify the impact of relaxing this assumption: under a 10\% liquidity buffer (agents can self-fund up to 10\% of an obligation from reserves), an agent receiving $(1-\alpha)p$ instead of $p$ defaults only if the shortfall $(1-\alpha)p$ exceeds the buffer $b$, i.e., when $\alpha < 1 - b/p$. At $b = 0.10p$ and our deployed $\alpha = 0.20$, the effective shortfall threshold becomes $0.20 > 1 - 0.10 = 0.90$, meaning the buffer absorbs residual shortfalls for mild failures. Our empirical cascade depth of 1.7 hops would correspondingly reduce to approximately 1.0--1.3 hops under a 10\% buffer regime---tightening the result rather than invalidating it. The zero-buffer assumption is therefore conservative: the mechanism performs at least as well as reported in real implementations with agent reserves.
-\textbf{L4 (Homogeneous Network Topology):} Stability proofs assume a homogeneous random graph. As established in Corollary 4.2, scale-free agent networks with $\gamma < 3$ require hub-priority coupling and additional mechanism design to guarantee stability.
+\textbf{L3 (Zero Buffer Assumption):} Theorem~\ref{thm:halting} assumes agents operate with zero liquidity buffer --- payment receipts must immediately fund downstream obligations. To quantify the impact of relaxing this assumption: under a 10\% liquidity buffer (agents can self-fund up to 10\% of an obligation from reserves), an agent receiving $(1-\alpha)p$ instead of $p$ defaults only if the shortfall $(1-\alpha)p$ exceeds the buffer $b$, i.e., when $\alpha < 1 - b/p$. At $b = 0.10p$ and our deployed $\alpha = 0.20$, the effective shortfall threshold becomes $0.20 > 1 - 0.10 = 0.90$, meaning the buffer absorbs residual shortfalls for mild failures. Our empirical cascade depth of 1.7 hops would correspondingly reduce to approximately 1.0--1.3 hops under a 10\% buffer regime---tightening the result rather than invalidating it. The zero-buffer assumption is therefore conservative: the mechanism performs at least as well as reported in real implementations with agent reserves.
+\textbf{L4 (Homogeneous Network Topology):} Stability proofs assume a homogeneous random graph. As established in Corollary~\ref{cor:scale_free}, scale-free agent networks with $\gamma < 3$ require hub-priority coupling and additional mechanism design to guarantee stability.
 
 \textbf{Future Directions --- Emerging Market Agent Infrastructure:} The Liquidity Coupling mechanism is particularly well-suited for deployment on India's Unified Payments Interface (UPI), which processed over 15 billion transactions in December 2024 and is now expanding toward an open API layer accessible to non-human actors \cite{npci_upi_2025}. UPI's architecture --- real-time gross settlement at sub-second latency with bank-level counterparty guarantees --- currently lacks a native mechanism for agent-to-agent credit extension, because UPI assumes human account holders with implicit credit histories. Liquidity Coupling directly addresses this gap: the $\alpha$-stake functions as a trustless credit signal that requires no prior relationship, making it directly applicable to UPI-native AI agent infrastructure. This positions India as a natural deployment environment for the first production agentic economy, where digital payment infrastructure is already at scale and the ``cold-start'' trust problem is most acute. We identify UPI-native Liquidity Coupling as a priority future work direction.
 

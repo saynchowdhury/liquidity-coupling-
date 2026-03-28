@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.25)  28 MAR 2026 00:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.25)  28 MAR 2026 00:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -826,124 +826,125 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (C:\Users\sayan\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-
-LaTeX Warning: Citation `agentic_economy_2025' on page 1 undefined on input lin
-e 38.
-
-
-LaTeX Warning: Citation `x402_2025' on page 1 undefined on input line 38.
-
-
-LaTeX Warning: Citation `ap2_2025' on page 1 undefined on input line 38.
-
-
-LaTeX Warning: Citation `aex_2025' on page 1 undefined on input line 38.
-
-
-LaTeX Warning: Citation `brady1988' on page 1 undefined on input line 40.
-
 [1
 
 {C:/Users/sayan/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
-LaTeX Warning: Citation `x402_2025' on page 2 undefined on input line 59.
+LaTeX Warning: Citation `agentic_economy_2025' on page 2 undefined on input lin
+e 52.
 
 
-LaTeX Warning: Citation `ap2_2025' on page 2 undefined on input line 60.
+LaTeX Warning: Citation `x402_2025' on page 2 undefined on input line 52.
 
 
-LaTeX Warning: Citation `nevermined_2024' on page 2 undefined on input line 61.
+LaTeX Warning: Citation `ap2_2025' on page 2 undefined on input line 52.
 
 
+LaTeX Warning: Citation `aex_2025' on page 2 undefined on input line 52.
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--62
-[]\OT1/cmr/bx/n/10.95 (+20) Liquidity Cou-
- []
+
+LaTeX Warning: Citation `brady1988' on page 2 undefined on input line 54.
 
 [2]
 
-LaTeX Warning: Citation `x402_2025' on page 3 undefined on input line 116.
+LaTeX Warning: Citation `x402_2025' on page 3 undefined on input line 73.
 
 
-LaTeX Warning: Citation `ap2_2025' on page 3 undefined on input line 116.
+LaTeX Warning: Citation `ap2_2025' on page 3 undefined on input line 74.
 
 
-LaTeX Warning: Citation `atcp_2025' on page 3 undefined on input line 116.
+LaTeX Warning: Citation `nevermined_2024' on page 3 undefined on input line 75.
 
 
-LaTeX Warning: Citation `nevermined_2024' on page 3 undefined on input line 116
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
+[]\OT1/cmr/bx/n/10.95 (+20) Liquidity Cou-
+ []
+
+
+LaTeX Warning: Citation `x402_2025' on page 3 undefined on input line 130.
+
+
+LaTeX Warning: Citation `ap2_2025' on page 3 undefined on input line 130.
+
+
+LaTeX Warning: Citation `atcp_2025' on page 3 undefined on input line 130.
+
+
+LaTeX Warning: Citation `nevermined_2024' on page 3 undefined on input line 130
 .
 
+[3]
 
-LaTeX Warning: Citation `agentic_economy_2025' on page 3 undefined on input lin
-e 119.
-
-
-LaTeX Warning: Citation `agent_economy_2026' on page 3 undefined on input line 
-119.
+LaTeX Warning: Citation `agentic_economy_2025' on page 4 undefined on input lin
+e 133.
 
 
-LaTeX Warning: Citation `fetch_2019' on page 3 undefined on input line 119.
+LaTeX Warning: Citation `agent_economy_2026' on page 4 undefined on input line 
+133.
 
 
-LaTeX Warning: Citation `singularitynet_2017' on page 3 undefined on input line
- 119.
+LaTeX Warning: Citation `fetch_2019' on page 4 undefined on input line 133.
 
 
-LaTeX Warning: Citation `poon2016lightning' on page 3 undefined on input line 1
-22.
+LaTeX Warning: Citation `singularitynet_2017' on page 4 undefined on input line
+ 133.
 
 
-LaTeX Warning: Citation `raiden2019' on page 3 undefined on input line 122.
-
-[3] [4]
-
-LaTeX Warning: Citation `pastor2001epidemic' on page 5 undefined on input line 
-167.
+LaTeX Warning: Citation `poon2016lightning' on page 4 undefined on input line 1
+36.
 
 
-LaTeX Warning: Citation `okx_zk_2023' on page 5 undefined on input line 175.
+LaTeX Warning: Citation `raiden2019' on page 4 undefined on input line 136.
 
-[5]
+[4] [5]
 
-LaTeX Warning: Citation `cho1987' on page 6 undefined on input line 215.
-
-[6] [7]
-
-LaTeX Warning: Citation `swarms_24' on page 8 undefined on input line 291.
+LaTeX Warning: Citation `pastor2001epidemic' on page 6 undefined on input line 
+181.
 
 
-LaTeX Warning: Citation `web4_25' on page 8 undefined on input line 292.
+LaTeX Warning: Citation `okx_zk_2023' on page 6 undefined on input line 189.
+
+[6]
+
+LaTeX Warning: Citation `cho1987' on page 7 undefined on input line 229.
+
+[7] [8]
+
+LaTeX Warning: Citation `swarms_24' on page 9 undefined on input line 305.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 292--292
+LaTeX Warning: Citation `web4_25' on page 9 undefined on input line 306.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 306--306
 []\OT1/cmr/m/n/10.95 (+20) Conway (Web4.ai)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 293--293
+Underfull \hbox (badness 10000) in paragraph at lines 307--307
 []\OT1/cmr/bx/n/10.95 (+20) Liquidity Cou-
  []
 
 
-Overfull \hbox (69.42107pt too wide) in paragraph at lines 284--296
+Overfull \hbox (69.42107pt too wide) in paragraph at lines 298--310
  [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8]
-
-LaTeX Warning: Citation `boneh2018vdf' on page 9 undefined on input line 314.
-
 [9]
 
-LaTeX Warning: Citation `npci_upi_2025' on page 10 undefined on input line 318.
+LaTeX Warning: Citation `boneh2018vdf' on page 10 undefined on input line 328.
 
 
+LaTeX Warning: Citation `npci_upi_2025' on page 10 undefined on input line 332.
+
+
+[10]
 No file paper.bbl.
-[10] (paper.aux)
+[11] (paper.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -959,16 +960,16 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: AA5AC1DF11248139D67AE651AC538E6E;4777.
  ) 
 Here is how much of TeX's memory you used:
- 24173 strings out of 467871
- 450262 string characters out of 5418376
- 884597 words of memory out of 5000000
+ 24179 strings out of 467871
+ 450311 string characters out of 5418376
+ 884620 words of memory out of 5000000
  52384 multiletter control sequences out of 15000+600000
- 650800 words of font info for 214 fonts, out of 8000000 for 9000
+ 650911 words of font info for 216 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,14n,104p,1153b,895s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\sayan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1095.pk> <C:\Users\sayan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
-0\tcrm1000.pk><C:/Users/sayan/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+1000.pk> <C:\Users\sayan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\tcrm1095.pk><C:/Users/sayan/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmbx10.pfb><C:/Users/sayan/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmbx12.pfb><C:/Users/sayan/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/sayan/AppData/Local/Progra
@@ -994,9 +995,9 @@ ayan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:
 1/public/amsfonts/cm/cmtt10.pfb><C:/Users/sayan/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/sayan/AppData/Local/Pro
 grams/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on paper.pdf (10 pages, 364004 bytes).
+Output written on paper.pdf (11 pages, 367364 bytes).
 PDF statistics:
- 303 PDF objects out of 1000 (max. 8388607)
- 54 named destinations out of 1000 (max. 500000)
+ 309 PDF objects out of 1000 (max. 8388607)
+ 56 named destinations out of 1000 (max. 500000)
  52421 words of extra memory for PDF output out of 61914 (max. 10000000)
 
